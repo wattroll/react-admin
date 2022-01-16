@@ -47,6 +47,7 @@ import { ListNoResults } from '../ListNoResults';
  * - linkType: 'edit' or 'show', or a function returning 'edit' or 'show' based on the record
  * - rowStyle: function returning a style object based on (record, index)
  * - rowSx: function returning a sx object based on (record, index)
+ * - ListItemProps: Props applied to the `ListItem` element, defaults to `{ disablePadding: true }`
  *
  * @example // Display all posts as a List
  * const postRowSx = (record, index) => ({
@@ -82,6 +83,7 @@ export const SimpleList = <RecordType extends RaRecord = any>(
         tertiaryText,
         rowSx,
         rowStyle,
+        ListItemProps = { disablePadding: true },
         ...rest
     } = props;
     const { data, isPending, total } =
@@ -129,7 +131,7 @@ export const SimpleList = <RecordType extends RaRecord = any>(
         <Root className={className} {...sanitizeListRestProps(rest)}>
             {data.map((record, rowIndex) => (
                 <RecordContextProvider key={record.id} value={record}>
-                    <ListItem disablePadding>
+                    <ListItem {...ListItemProps}>
                         <LinkOrNot
                             linkType={linkType}
                             resource={resource}
@@ -256,6 +258,7 @@ export interface SimpleListProps<RecordType extends RaRecord = any>
     tertiaryText?: FunctionToElement<RecordType> | ReactElement | string;
     rowSx?: (record: RecordType, index: number) => SxProps;
     rowStyle?: (record: RecordType, index: number) => any;
+    ListItemProps?: ListItemProps;
     // can be injected when using the component without context
     resource?: string;
     data?: RecordType[];

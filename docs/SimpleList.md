@@ -52,6 +52,7 @@ export const PostList = () => (
 | `rowStyle` | Optional | function | | A function returning a style object to apply to each row. |
 | `rowSx` | Optional | function | | A function returning a sx object to apply to each row. |
 | `empty` | Optional | ReactElement | | A ReactElement to display instead of the list when the data is empty. |
+| `ListItemProps` | Optional | object | { disablePadding: true } | Props to pass to underlying `ListItem` |
 
 ## `empty`
 
@@ -227,6 +228,9 @@ export const PostList = () => (
     </List>
 );
 ```
+## `ListItemProps`
+
+This optional prop should be an object. It will be used as underlying `ListItem` props. Defaults to `{ disablePadding: true }`.
 
 ## `secondaryText`
 
