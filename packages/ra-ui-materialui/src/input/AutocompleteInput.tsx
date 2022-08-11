@@ -605,6 +605,14 @@ If you provided a React element for the optionText prop, you must also provide t
                             {...params}
                             {...TextFieldProps}
                             InputProps={mergedTextFieldProps}
+                            inputProps={
+                              {...params.inputProps,
+                               ...TextFieldProps?.inputProps}
+                            }
+                            InputLabelProps={
+                              {...params.InputLabelProps,
+                               ...TextFieldProps?.InputLabelProps}
+                            }
                             size={size}
                         />
                     );
